@@ -1,2 +1,4 @@
 rootProject.name = 'spring-cloud-zuul-gateway'
 include 'eureka-server'
+include 'product-service'
+include 'order-service'
