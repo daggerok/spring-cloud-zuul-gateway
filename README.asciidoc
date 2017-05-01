@@ -1,0 +1,6 @@
+= spring-cloud-zuul-gateway image:https://travis-ci.org/daggerok/spring-cloud-zuul-gateway.svg?branch=master["build status", link="https://travis-ci.org/daggerok/spring-cloud-zuul-gateway"]
+
+[source,bash]
+----
+gradle eureka-server:bootRun
+----

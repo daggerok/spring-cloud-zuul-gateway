@@ -1,0 +1,45 @@
+buildscript {
+    ext {
+        kotlinVersion = '1.1.2'
+        springCloudVersion = 'Dalston.RELEASE'
+    }
+    repositories { mavenCentral() }
+    dependencies { classpath "org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}" }
+}
+
+plugins {
+    id 'java'
+    id 'idea'
+    id 'eclipse'
+    id 'org.jetbrains.kotlin.jvm' version '1.1.2'
+    id 'org.springframework.boot' version '1.5.3.RELEASE'
+}
+
+apply plugin: 'kotlin-spring'
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+
+compileKotlin {
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8
+}
+
+compileTestKotlin {
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.springframework.cloud:spring-cloud-starter-eureka-server',
+            "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlinVersion",
+            "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:$springCloudVersion"
+    }
+}
