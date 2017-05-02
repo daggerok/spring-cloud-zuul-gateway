@@ -12,7 +12,7 @@ open http://localhost:8080
 
 ==== edge-clients uses localhost
 
-in configs it knows only api-gateway url: http://localhost:8888:
+it knows only api-gateway url: http://localhost:8888
 
 [source,yml]
 ----
