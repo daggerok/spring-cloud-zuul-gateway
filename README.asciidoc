@@ -1,6 +1,52 @@
 = spring-cloud-zuul-gateway image:https://travis-ci.org/daggerok/spring-cloud-zuul-gateway.svg?branch=master["build status", link="https://travis-ci.org/daggerok/spring-cloud-zuul-gateway"]
 
+=== run and test
+
 [source,bash]
 ----
 gradle eureka-server:bootRun
+gradle order-service:bootRun
+gradle product-service:bootRun
+gradle api-gateway:bootRun
+gradle web-client:bootRun
+open http://localhost:8080
+----
+
+=== edge-clients will use api-gateway
+
+[source,yml]
+----
+spring.application.name: web-client
+zuul:
+  routes:
+    gateway:
+      path: /api/**
+      url: http://localhost:8888/api
+----
+
+== api-gateway doing app routing's
+
+[source,yaml]
+----
+spring.application.name: api-gateway
+zuul:
+  prefix: /api
+  routes:
+    orders:
+      path: /orders/**
+      serviceId: order-service
+    products:
+      path: /products/**
+      url: http://localhost:8000/**
+----
+
+=== big picture
+
+[source,bash]
+----
+                         "/api/orders"  -> serviceId              order-service
+                                                                    |
+web-client: "/api/**" -> api-gateway -> eureka-server ------->------*
+                                                                    |
+                         "/api/products" -> http://localhost:8000 product-service
 ----

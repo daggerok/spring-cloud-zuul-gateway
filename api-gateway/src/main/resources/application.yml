@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: api-gateway
+zuul:
+  prefix: /api
+  routes:
+    orders:
+      path: /orders/**
+      serviceId: order-service
+    products:
+      path: /products/**
+      url: http://localhost:8000/**
+server:
+  port: 8888

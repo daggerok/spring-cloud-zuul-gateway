@@ -1,0 +1,5 @@
+mainClassName = 'daggerok.ApiGatewayApplicationKt'
+
+dependencies {
+    compile 'org.springframework.cloud:spring-cloud-starter-zuul'
+}
