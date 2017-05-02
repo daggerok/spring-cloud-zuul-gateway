@@ -21,7 +21,7 @@ zuul:
   routes:
     gateway:
       path: /api/**
-      url: http://localhost:8888/api
+      url: http://localhost:8888/api # api-gateway
 ----
 
 ==== api-gateway proxying all micro-services routing's

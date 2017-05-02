@@ -25,18 +25,21 @@
       this.fetchRandomData = this.fetchRandomData.bind(this);
       this.state = { result: '', flip: true };
     }
+    update(result) {
+      this.setState({
+        result: result,
+        flip: !this.state.flip
+      });
+    }
     fetchRandomData() {
       fetch(`/api/${this.state.flip ? 'orders' : 'products'}`)
         .then(resp => resp.json())
-        .then(resp => this.setState({
-          result: JSON.stringify(resp),
-          flip: !this.state.flip
-        }));
+        .then(json => this.update(JSON.stringify(json, null, 1)))
     }
     render() {
       return (
         <div>
-          <button onClick={this.fetchRandomData}>click me</button>
+          <button className="btn" onClick={this.fetchRandomData}>click me</button>
           <pre>{this.state.result}</pre>
         </div>
       );
